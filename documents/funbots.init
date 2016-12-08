@@ -1,0 +1,10 @@
+## funbots.init should be stored as <user home>/funbots/funbots.init
+## this file will contain SENSITIVE information that we should NOT place in source control
+## Copy this file over to <user home>/funbots/funbots.init and modify.
+
+## This file will be parsed using Python3 ConfigParser.
+## Please look into https://docs.python.org/2/library/configparser.html
+##   and https://wiki.python.org/moin/ConfigParserExamples for details.
+
+[Google Vision]
+key=xxx

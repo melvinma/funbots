@@ -1,0 +1,9 @@
+## use the following commands to install requirements
+##    pip3 install -r requirements.txt
+
+## for Google Vision Api and Image manipulation
+google-api-python-client>=1.5.5
+Pillow>=3.4.2
+
+## for text to speech,
+gTTS>=1.1.6
