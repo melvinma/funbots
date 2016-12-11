@@ -7,6 +7,8 @@ import argparse
 from PIL import Image
 from PIL import ImageDraw
 
+from commons import FunbotsConfig
+
 def main(input_filename, output_filename, max_results):
     with open(input_filename, 'rb') as image:
         faces = detect_face(image, max_results)
@@ -21,8 +23,8 @@ def main(input_filename, output_filename, max_results):
 
 
 def get_vision_service():
-    dvKey = '!!!!'
-    return discovery.build('vision', 'v1', developerKey=dvKey)
+    conf = FunbotsConfig()
+    return discovery.build('vision', 'v1', developerKey=conf.googleVisionKey())
 
 def detect_face(face_file, max_results=4):
     """Uses the Vision API to detect faces in the given file.
