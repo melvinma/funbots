@@ -72,6 +72,10 @@ def highlight_faces(image, faces, output_filename):
                for v in face['fdBoundingPoly']['vertices']]
         draw.line(box + [box[0]], width=5, fill='#00ff00')
 
+        print("angerLikelihood=" + face['angerLikelihood'])
+        print("sorrowLikelihood=" + face['sorrowLikelihood'])
+
+
     im.save(output_filename)
 
 if __name__ == '__main__':
