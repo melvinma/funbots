@@ -1,0 +1,24 @@
+Reference:
+  http://raspberrypi.stackexchange.com/questions/54365/how-to-download-and-install-python-3-5-in-raspbian/56632
+
+Create a working directory
+  mkdir ~/workspace/python3.5
+  cd ~/workspace/python3.5
+
+Install dependencies:
+  sudo apt-get install libbz2-dev liblzma-dev libsqlite3-dev libncurses5-dev libgdbm-dev zlib1g-dev libreadline-dev libssl-dev tk-dev
+  sudo apt-get install libjpeg9-dev libasound2-dev
+
+Download the python 3.5.2 which is the same version as the one in MacOS
+  wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tar.xz
+  tar -xvf Python-3.5.2.tar.xz
+  cd Python-3.5.2
+  ./configure
+  make
+  sudo make install
+
+Upgrade pip3 to python-3.5.2
+  sudo pip3 install pip --upgrade
+
+
+  
