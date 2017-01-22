@@ -12,3 +12,6 @@ gTTS>=1.1.6
 ## for playing audio sound.
 ## install simple audio : libasound2-dev 
 simpleaudio>=1.0.1
+
+## picamera
+picamera>=1.10
