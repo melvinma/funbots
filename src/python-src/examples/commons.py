@@ -26,10 +26,14 @@ class FunbotsConfig :
             if filePath is None:
                 home = expanduser("~")
                 filePath = os.path.join(home, 'funbots/funbots.init')
+                credFile = os.path.join(home, 'funbots/baymax-googlekey.txt')
+                print("filePath=" + filePath)
+                os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credFile
             conf = configparser.ConfigParser()
             conf.read(filePath)
-            ##print(conf.sections())
+            print(conf.sections())
             FunbotsConfig.instance = FunbotsConfig.__OnlyOne(conf)
 
     def googleVisionKey(self) :
+        ##print(self.instance.conf['Google Vision']['gvkey'])
         return self.instance.conf['Google Vision']['gvkey']
