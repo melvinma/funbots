@@ -1,9 +1,12 @@
 
 import time
 import os
+import signal
 from os.path import expanduser
 import base64
 from enum import Enum
+from subprocess import check_output
+from subprocess import CalledProcessError
 
 import picamera
 
@@ -38,6 +41,12 @@ def resizeImage():
     img.save(resizedPath)
 
 def showImage(imgPath):
+    try:
+        pid = int(check_output(["pidof","-s", "display"]))
+        if pid:
+            os.kill(pid, signal.SIGTERM)    
+    except CalledProcessError:
+        pass
     img = Image.open(imgPath)
     img.show()
 
@@ -229,6 +238,7 @@ def main() :
                 emotion.dumpValues()
                 actOnEmotion(emotion)
             else:
+                showImage(resizedPath)
                 actOnEmotion(emotion)
             ## sleep 1 second
             ## time.sleep(1)
