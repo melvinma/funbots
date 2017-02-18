@@ -87,7 +87,7 @@ def highlight_faces(image, faces, output_filename):
       output_filename: the name of the image file to be created, where the
           faces have polygons drawn around them.
     """
-    
+
     removeIfExisting(output_filename)
 
     im = Image.open(image)
@@ -123,7 +123,7 @@ class Likelihood (Enum) :
         if strVal == llh.name:
             ret = llh
             break
-      return ret 
+      return ret
 
 class Emotion:
     def __init__(self):
@@ -132,9 +132,9 @@ class Emotion:
         self.surprise_likelihood = Likelihood.UNKNOWN
         self.anger_likelihood = Likelihood.UNKNOWN
         self.headwear_likelihood = Likelihood.UNKNOWN
-    
+
     def dumpValues(self):
-        print("joy_likelihood=%s, sorrow_likelihood=%s, surprise_likelihood=%s, anger_likelihood=%s headwear_likelihood=%s" 
+        print("joy_likelihood=%s, sorrow_likelihood=%s, surprise_likelihood=%s, anger_likelihood=%s headwear_likelihood=%s"
                 % (self.joy_likelihood.name, self.sorrow_likelihood.name, self.surprise_likelihood.name, self.anger_likelihood.name, self.headwear_likelihood.name ))
 
 def resultImage(face):
@@ -159,7 +159,7 @@ def reviewImage():
                 # Reset the file pointer, so we can read the file again
                 image.seek(0)
                 highlight_faces(image, faces, highlightedPath)
-       
+
                 ## generate results
                 return resultImage(faces[0])
             else :
@@ -178,19 +178,19 @@ def actOnEmotion(emotion):
     if emotion:
         if emotion.joy_likelihood.value > Likelihood.UNLIKELY.value :
             print("happy")
-            playSound(soundPath + "light-sabre-battle.wav")
+            playSound(soundPath + "GoodHaveApop.wav")
         elif emotion.anger_likelihood.value > Likelihood.UNLIKELY.value :
             print("anger")
-            playSound(soundPath + "light-sabre-on.wav")
+            playSound(soundPath + "Angerloli.wav")
         elif emotion.sorrow_likelihood.value > Likelihood.UNLIKELY.value :
             print("sorrow")
-            playSound(soundPath + "light-sabre-off.wav")
+            playSound(soundPath + "SadPop.wav")
         elif emotion.surprise_likelihood.value > Likelihood.UNLIKELY.value :
             print("surprise")
-            playSound(soundPath + "starwar-vader-breathing.wav")
+            playSound(soundPath + "SurpriseLoli.wav")
         else:
             print("No Emotion??")
-            playSound(soundPath + "starwar-vader-breathing.wav")
+            playSound(soundPath + "Noface.wav")
 
 
     else:
@@ -219,7 +219,7 @@ def main() :
             #this is the script that will be called (as root)
             processing = True
             print("Button pressed")
-            
+
             takePhoto()
             resizeImage()
             emotion = reviewImage()
@@ -235,7 +235,7 @@ def main() :
             processing = False
 
 
-print("start funbotsMain")    
+print("start funbotsMain")
 #adjust for where your switch is connected
 buttonPin = 17
 GPIO.setmode(GPIO.BCM)
@@ -252,7 +252,7 @@ print("initiate google vision... the file is stored at %s" % (credFile))
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credFile
 
 scriptPath = os.path.dirname(os.path.realpath(__file__))
-soundPath = scriptPath + '/../../resources/sound-samples/'
+soundPath = scriptPath + '/../../resources/sound-funbots/'
 
 
 print("before main")
