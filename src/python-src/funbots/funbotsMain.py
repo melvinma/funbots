@@ -203,7 +203,7 @@ def actOnEmotion(emotion):
 
 
     else:
-         playSound(soundPath + "chewy_roar.wav")
+         playSound(soundPath + "Noface.wav")
 
 
 ## main progarm for funbots.
