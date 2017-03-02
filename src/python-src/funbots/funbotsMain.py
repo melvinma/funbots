@@ -182,6 +182,21 @@ def playSound(soundFilePath):
     play_obj = wave_obj.play()
     play_obj.wait_done()
 
+def moveArm(up):
+    ## Move arm up and down
+    position = 5
+    if up :
+        position = 10
+        print("move arm up")
+    else :
+        print("move arm down")
+    pwm.ChangeDutyCycle(position)
+        
+def startArm():
+    pwm.start(5)
+
+def endArm():
+    pwm.stop()
 
 def actOnEmotion(emotion):
     if emotion:
@@ -200,11 +215,12 @@ def actOnEmotion(emotion):
         else:
             print("No Emotion??")
             playSound(soundPath + "Noface.wav")
-
-
     else:
          playSound(soundPath + "Noface.wav")
 
+    moveArm(True) ## give 
+    time.sleep(8) ## wait for 8 seconds
+    moveArm(False) 
 
 ## main progarm for funbots.
 ## Current design:
@@ -219,6 +235,7 @@ def main() :
     counter = 0
     processing = False
 
+    startArm()
     while True :
         ##counter = counter + 1
         ##if counter % 1000 == 0:
@@ -244,12 +261,16 @@ def main() :
             ## time.sleep(1)
             processing = False
 
+    stopArm()
 
 print("start funbotsMain")
 #adjust for where your switch is connected
 buttonPin = 17
+motorPin = 23
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(buttonPin,GPIO.IN)
+GPIO.setup([motorPin], GPIO.OUT)
+pwm=GPIO.PWM(motorPin, 50) ## 50 hertz, the frequency of the motor.
 
 photoPath="/tmp/funbots-initial-image.jpg"
 resizedPath="/tmp/funbots-resized-image.jpg"
@@ -266,5 +287,12 @@ soundPath = scriptPath + '/../../resources/sound-funbots/'
 
 
 print("before main")
-main()
+
+try:
+    main()
+finally:
+    print("cleanup GPIO ")
+    ## cleanup
+    GPIO.cleanup()
+
 print("all done")
