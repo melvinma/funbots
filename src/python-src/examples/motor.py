@@ -3,8 +3,8 @@ import time
 import sys
 
 #pin=32 #12 on board
-pin=12 #18 on board, default hardware pwm port. in our case, it does not work
-#pin=16 #23 on board. does not support pwm
+#pin=12 #18 on board, default hardware pwm port. in our case, it does not work
+pin=16 #23 on board. does not support pwm
 
 try:
     GPIO.setmode(GPIO.BOARD)

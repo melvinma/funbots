@@ -239,9 +239,9 @@ def main() :
     while True :
         ##counter = counter + 1
         ##if counter % 1000 == 0:
-        ##     print("main inside true")
+        ##     print("button inside " + str(GPIO.input(buttonPin)))
         #assuming the script to call is long enough we can ignore bouncing
-        if (not GPIO.input(buttonPin)) and not processing:
+        if  (not GPIO.input(buttonPin)) and not processing:
             #this is the script that will be called (as root)
             processing = True
             print("Button pressed")
@@ -265,11 +265,13 @@ def main() :
 
 print("start funbotsMain")
 #adjust for where your switch is connected
-buttonPin = 17
+#buttonPin = 17
+buttonPin = 10
 motorPin = 23
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(buttonPin,GPIO.IN)
-GPIO.setup([motorPin], GPIO.OUT)
+#GPIO.setup(motorPin, GPIO.OUT)
+GPIO.setup(buttonPin, GPIO.IN)
+GPIO.setup(motorPin, GPIO.OUT)
 pwm=GPIO.PWM(motorPin, 50) ## 50 hertz, the frequency of the motor.
 
 photoPath="/tmp/funbots-initial-image.jpg"
